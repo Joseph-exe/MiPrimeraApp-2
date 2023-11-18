@@ -1,0 +1,29 @@
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Login</ion-card-title>
+    </ion-card-header>
+  <ion-card-content>
+  <!-- Crea el formulario para poder utilizar las variables en login.page.ts -->
+  <form [formGroup] = "formularioLogin">
+    <!-- Cada input debe ir con un label-->
+    <ion-item>
+      <!-- Texto del label -->
+      <ion-label>Usuario</ion-label>
+      <!-- Nombre del input -->
+      <ion-input formControlName = "nombre"></ion-input>
+    </ion-item>
+    <ion-item>
+      <!-- Texto del label -->
+      <ion-label>Password</ion-label>
+      <!-- Nombre del input, es del tipo password-->
+      <ion-input formControlName = "password" type="password"></ion-input>
+    </ion-item>
+  </form>
+    <!-- Boton que llama a la función ingresar en login.page.ts -->
+    <ion-button (click) = "ingresar()">Ingresar</ion-button>
+    <!-- Botón que redirige al page register -->
+    <ion-button [routerLink]="['/register']">Registrarse</ion-button>
+  </ion-card-content>
+</ion-card>
+</ion-content>

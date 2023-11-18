@@ -1,0 +1,24 @@
+{
+    "files.exclude": {
+        "tsconfig.spec.json": true,
+        "tsconfig.json": true,
+        "tsconfig.app.json": true,
+        "package-lock.json": true,
+        ".gitignore": true,
+        ".eslintrc.json": true,
+        ".editorconfig": true,
+        ".browserslistrc": true,
+        "src\\environments": true,
+        "node_modules": true,
+        ".angular": true,
+        ".vscode": true,
+        "karma.conf.js": true,
+        "capacitor.config.ts": true,
+        "ionic.config.json": true,
+        "angular.json": true,
+        "src\\assets": true,
+        "src\\theme": true,
+        "src\\app\\app.component.scss": true,
+        "src\\global.scss": true
+    }
+}
