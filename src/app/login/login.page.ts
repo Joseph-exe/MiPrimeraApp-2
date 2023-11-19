@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { NavController, AlertController} from '@ionic/angular';
+import { NavController, AlertController } from '@ionic/angular';
+import { ServicioRegistroService } from '../servicios/servicio-registro.service';
+import { RegistroModel } from '../model/registro-model';
 
 @Component({
   selector: 'app-login',
@@ -8,51 +10,53 @@ import { NavController, AlertController} from '@ionic/angular';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  
-  //Inicio del formulario
+
+  // Inicio del formulario
   formularioLogin: FormGroup;
 
-  //Constructor con distintas llamadas a elementos que permiten el uso de formularios
-  //Y controles de navegación
-  constructor(public fb : FormBuilder, public navCtrl : NavController, public alertCtrl : AlertController) { 
-    //Asignación de elementos al formulario incluyendo validadores
+  // Constructor con distintas llamadas a elementos que permiten el uso de formularios
+  // Y controles de navegación
+  constructor(public fb : FormBuilder, public navCtrl : NavController, public alertCtrl : AlertController, private servicioRegistroService: ServicioRegistroService) {
+    // Asignación de elementos al formulario incluyendo validadores
     this.formularioLogin = this.fb.group({
       'nombre': new FormControl("",Validators.required),
       'password': new FormControl("",Validators.required)
     })
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
-  //Método que permite ingresar al home, validando al usuario
+  // Método que permite ingresar al home, validando al usuario
   async ingresar(){
-    //Variable que utiliza los valores en el formulario
-    var formulario = this.formularioLogin.value;
-    //Variable que obtiene los valores almacenados en el localstorage
-    var usuario = JSON.parse(localStorage.getItem('usuario')!);
+    // Variable que utiliza los valores en el formulario
+    const formulario = this.formularioLogin.value;
 
-    //Comparación entre lo ingresado y lo que está en localstorage
-    if (usuario.nombre == formulario.nombre && usuario.password == formulario.password)
-    {
-      //Asignación de variable para determinar si el usuario inició sesión o no
-      //utilizado en el localstorage y el guard
-      localStorage.setItem("ingresado","true");
-      //Redirección al home, ya que para estar aquí el usuario y la contraseña
-      //debe ser válido
-      this.navCtrl.navigateRoot('home');
-    }
-    else
-    {
-      //Si no es válido el usuario, lanza una alerta
-      const alerta = await this.alertCtrl.create({
-        header: 'Datos incorrectos',
-        message: 'Los datos ingresados no son correctos',
-        buttons: ['Aceptar']
-      });
+    // Llama al servicio de registro para obtener la lista de usuarios
+    this.servicioRegistroService.getLogins().subscribe((usuarios: RegistroModel[]) => {
+      // Busca el usuario ingresado en el formulario dentro de la lista de usuarios
+      const usuarioValido = usuarios.find(u => u.nombre === formulario.nombre && u.contrasena === formulario.password);
 
-      await alerta.present();
-    }
+      if (usuarioValido) {
+        // Asigna una variable en el localstorage para indicar que el usuario inició sesión
+        localStorage.setItem("ingresado","true");
+
+        // Redirige al usuario a la página de inicio
+        this.navCtrl.navigateRoot('home');
+      } else {
+        // Si no es válido el usuario, lanza una alerta
+        this.mostrarAlerta();
+      }
+    });
   }
 
+  // Método para mostrar una alerta si los datos de inicio de sesión no son válidos
+  async mostrarAlerta() {
+    const alerta = await this.alertCtrl.create({
+      header: 'Datos incorrectos',
+      message: 'Los datos ingresados no son correctos',
+      buttons: ['Aceptar']
+    });
+
+    await alerta.present();
+  }
 }
