@@ -11,9 +11,9 @@ export class RegisterPage implements OnInit {
 
   formularioRegistro: FormGroup;
 
-  constructor(public fb:FormBuilder, public alertCtrl: AlertController, public navCtrl: NavController) { 
+  constructor(public fb:FormBuilder, public alertCtrl: AlertController, public navCtrl: NavController) {
     this.formularioRegistro = this.fb.group({
-      'nombre': new FormControl("",Validators.required),
+      'rut': new FormControl("",Validators.required),
       'password': new FormControl("",Validators.required),
       'confirmar': new FormControl("",Validators.required)
     })
@@ -38,7 +38,7 @@ export class RegisterPage implements OnInit {
     }
 
     var usuario = {
-      nombre:formulario.nombre,
+      rut:formulario.rut,
       password:formulario.password
     }
 

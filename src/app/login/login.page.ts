@@ -19,7 +19,7 @@ export class LoginPage implements OnInit {
     private servicioRegistroService: ServicioRegistroService
   ) {
     this.formularioLogin = this.fb.group({
-      'nombre': new FormControl("", Validators.required),
+      'rut': new FormControl("", Validators.required),
       'password': new FormControl("", Validators.required)
     });
   }
