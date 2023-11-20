@@ -5,7 +5,7 @@ export class RegistroModel {
         public id: string,
         public rut: string,
         public nombre: string,
-        public contrasena: string,
+        public password: string,
         public telefono: string,
         public sector_registro: string,
     ) {}
