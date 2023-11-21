@@ -6,7 +6,7 @@ const routes: Routes = [
   {
     path: 'home',
     loadChildren: () => import('./home/home.module').then( m => m.HomePageModule),
-    canActivate:[HomeGuard]//Para que tenga efecto el guard en el home, 
+    canActivate:[HomeGuard]//Para que tenga efecto el guard en el home,
     //se agrega lo mismo en los formularios donde se desea implementar
   },
   {

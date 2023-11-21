@@ -17,8 +17,7 @@
         "ionic.config.json": true,
         "angular.json": true,
         "src\\assets": true,
-        "src\\theme": true,
         "src\\app\\app.component.scss": true,
-        "src\\global.scss": true
+        "src\\theme": true
     }
 }

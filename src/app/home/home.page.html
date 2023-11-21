@@ -1,38 +1,19 @@
-<div class="ion-page" id="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>Menu</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding"> Tap the button in the toolbar to open the menu. </ion-content>
-</div>
+<ion-text color="primary" class="ion-text-center">
+  <h1>Reserva tus cupos en nuestros gimnasios disponibles</h1>
+</ion-text>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
-<!--
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
--->
-<!-- Llama a la función salir en el home.page.ts -->
-<ion-button (click)="salir()">Salir</ion-button>
-<!-- Ejemplo de alerta -->
-<ion-button id="present-alert">Click Me</ion-button>
-<ion-alert
-  trigger="present-alert"
-  header="Alert"
-  subHeader="Important message"
-  message="This is an alert!"
-  [buttons]="alertButtons"
-></ion-alert>
+<ion-content color="light">
+  <ion-list [inset]="true">
+    <ion-item *ngFor="let gimnasio of gimnasios">
+      <ion-label>{{ gimnasio.sector }}</ion-label>
+      <ion-item>
+        <ion-label>Selecciona una hora y cupos:</ion-label>
+        <ion-select [(ngModel)]="nombreGimnasioSeleccionado">
+          <ion-select-option *ngFor="let opcion of obtenerHorasDisponibles()" [value]="opcion">
+            {{ opcion.hora }} - {{ opcion.cupos }} cupos
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-item>
+  </ion-list>
 </ion-content>
-<!-- Ejemplo de uso de datetime -->
-<ion-datetime value="2022-04-21T00:00:00" min="2022-03-01T00:00:00" max="2022-05-31T23:59:59"></ion-datetime>
