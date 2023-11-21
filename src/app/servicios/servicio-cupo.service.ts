@@ -14,4 +14,5 @@ export class ServicioCupoService {
     return this.http.get<CuposModel[]>('http://homestead.test/api/cupos-disponibles')
       .pipe(tap(data => console.log('Respuesta del servidor:', data)));
   }
+
 }

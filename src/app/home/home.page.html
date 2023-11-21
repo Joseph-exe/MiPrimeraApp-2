@@ -3,17 +3,19 @@
 </ion-text>
 
 <ion-content color="light">
+  <ion-button (click)="salir()">Login</ion-button>
   <ion-list [inset]="true">
     <ion-item *ngFor="let gimnasio of gimnasios">
       <ion-label>{{ gimnasio.sector }}</ion-label>
       <ion-item>
-        <ion-label>Selecciona una hora y cupos:</ion-label>
+        <ion-label>Cupos:</ion-label>
         <ion-select [(ngModel)]="nombreGimnasioSeleccionado">
-          <ion-select-option *ngFor="let opcion of obtenerHorasDisponibles()" [value]="opcion">
-            {{ opcion.hora }} - {{ opcion.cupos }} cupos
+          <ion-select-option *ngFor="let opcion of gimnasio.opciones" [value]="opcion">
+            {{ opcion.hora }} - {{ opcion.cuposDisponibles }} cupos disponibles
           </ion-select-option>
         </ion-select>
       </ion-item>
+      <ion-button fill="outline" (click)="reservarCupo()">Reservar</ion-button>
     </ion-item>
   </ion-list>
 </ion-content>
