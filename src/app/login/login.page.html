@@ -1,5 +1,5 @@
-<ion-content>
-  <ion-card>
+<ion-content color="primary">
+  <ion-card style="margin-top: 12em;">
     <ion-card-header>
       <ion-card-title>Login</ion-card-title>
     </ion-card-header>
@@ -9,19 +9,20 @@
         <!-- Cada input debe ir con un label-->
         <ion-item>
           <!-- Texto del label -->
-          <ion-label>Usuario</ion-label>
+          <ion-label>Rut</ion-label>
           <ion-input formControlName="rut"></ion-input>
         </ion-item>
         <ion-item>
           <!-- Texto del label -->
-          <ion-label>Password</ion-label>
+          <ion-label>Contraseña</ion-label>
           <ion-input formControlName="password" type="password"></ion-input>
         </ion-item>
       </form>
-      <!-- Boton que llama a la función ingresar en login.page.ts -->
-      <ion-button (click)="ingresar()">Ingresar</ion-button>
-      <!-- Botón que redirige al page register -->
-      <ion-button [routerLink]="['/register']">Registrarse</ion-button>
+      <ion-button expand="block" color="secondary" (click)="ingresar()" class="ion-color-dark ingre">Ingresar</ion-button>
+      <ion-button color="secondary" [routerLink]="['/register']" class="ion-color-dark reg">Registrarse</ion-button>
+      <p>
+        <ion-icon color="warning" name="warning"></ion-icon> <ion-text color="warning">Si ha perdido la contraseña contactese con la administracion</ion-text>
+      </p>
     </ion-card-content>
   </ion-card>
 </ion-content>
