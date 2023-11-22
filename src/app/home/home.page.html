@@ -3,7 +3,6 @@
 </ion-text>
 
 <ion-content color="light">
-  <ion-button (click)="salir()">Login</ion-button>
   <ion-list [inset]="true">
     <ion-item *ngFor="let gimnasio of gimnasios">
       <ion-label>{{ gimnasio.sector }}</ion-label>
@@ -18,4 +17,5 @@
       <ion-button fill="outline" (click)="reservarCupo()">Reservar</ion-button>
     </ion-item>
   </ion-list>
+  <ion-button (click)="salir()">Exit</ion-button>
 </ion-content>
