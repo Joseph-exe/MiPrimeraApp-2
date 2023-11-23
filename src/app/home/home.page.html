@@ -6,11 +6,10 @@
   <ion-list [inset]="true">
     <ion-item *ngFor="let gimnasio of gimnasios">
       <ion-label>{{ gimnasio.sector }}</ion-label>
-      <ion-item>
-        <ion-label>Cupos:</ion-label>
-        <ion-select [(ngModel)]="nombreGimnasioSeleccionado" >
-          <ion-select-option *ngFor="let opcion of gimnasio.opciones" [value]="opcion">
-            {{ opcion.hora }} - {{ opcion.cuposDisponibles }} cupos disponibles
+      <ion-item style="margin-left: -2em;">
+        Cupos:
+        <ion-select [(ngModel)]="nombreGimnasioSeleccionado" ><ion-select-option *ngFor="let opcion of gimnasio.opciones" [value]="opcion">
+            {{ opcion.hora}} - {{opcion.cuposDisponibles}} cupos
           </ion-select-option>
         </ion-select>
       </ion-item>

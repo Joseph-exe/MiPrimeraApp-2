@@ -8,7 +8,8 @@ import { NavController, ToastController } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage
+{
   gimnasios: { sector: string, opciones: { hora: string, cupos: number, cuposDisponibles: number }[] }[] = [];
   nombreGimnasioSeleccionado: { hora: string, cupos: number, cuposDisponibles: number, reservado: boolean } | null = null;
 
@@ -17,7 +18,6 @@ export class HomePage {
     private cdr: ChangeDetectorRef,
     private toastController: ToastController,
     public navCtrl: NavController) {}
-
 
   ngOnInit() {
     this.obtenerCuposDisponibles();
@@ -46,24 +46,20 @@ export class HomePage {
       const { cuposDisponibles, reservado } = this.nombreGimnasioSeleccionado;
 
       if (cuposDisponibles > 0 && !reservado) {
-        // Realizar la lógica de reserva aquí se resta nomas
+        // la resta
         this.nombreGimnasioSeleccionado.cuposDisponibles--;
         this.nombreGimnasioSeleccionado.reservado = true;
 
-        // Actualizar el modelo directamente
         this.nombreGimnasioSeleccionado = { ...this.nombreGimnasioSeleccionado };
 
-        // Forzar la detección de cambios
         this.cdr.detectChanges();
 
-        // Mostrar mensaje de reserva exitosa
         this.mostrarMensaje('Se ha reservado correctamente');
       } else {
-        // Lógica cuando no hay cupos disponibles o ya está reservado
         if (reservado) {
-          console.log('Ya se ha reservado un cupo para esta hora.');
+          this.mostrarMensaje('Ya se ha reservado un cupo para esta hora.');
         } else {
-          console.log('No hay cupos disponibles para reservar en esta hora.');
+          this.mostrarMensaje('No hay cupos disponibles para reservar en esta hora.');
         }
       }
     }
@@ -71,15 +67,13 @@ export class HomePage {
   async mostrarMensaje(mensaje: string) {
     const toast = await this.toastController.create({
       message: mensaje,
-      duration: 2000, // Duración en milisegundos del mensaje
-      position: 'middle' // Posición del mensaje en la pantalla (puedes ajustarla según tus preferencias)
+      duration: 2000,
+      position: 'middle'
     });
     toast.present();
   }
   salir(){
-    //Cambia el estado "ingresado" de localstorage a "false"
     localStorage.setItem("ingresado","false");
-    //redirige la aplicación a "login"
     this.navCtrl.navigateRoot("login");
   }
 

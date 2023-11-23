@@ -20,7 +20,7 @@ export class ServicioRegistroService {
   }
 
   registerUsuario(usuario: RegistroModel) : Observable<any> {
-    return this.http.post('http://homestead.test/api/usuario/register', usuario)
+    return this.http.post('http://homestead.test/api/usuario/registrar', usuario)
       .pipe(tap(data => console.log('Respuesta del servidor:', data)));
   }
 }

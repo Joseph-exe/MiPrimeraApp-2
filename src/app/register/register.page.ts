@@ -13,8 +13,8 @@ export class RegisterPage implements OnInit {
   formularioRegistro: FormGroup;
 
   constructor(
-    public formBuilder:FormBuilder, 
-    public alertCtrl: AlertController, 
+    public formBuilder:FormBuilder,
+    public alertCtrl: AlertController,
     public navCtrl: NavController,
     private registerService: ServicioRegistroService
   ) {
@@ -63,31 +63,6 @@ export class RegisterPage implements OnInit {
         }
       }
     );
-    
+
   }
-
-  /*async guardar()
-  {
-    var formulario = this.formularioRegistro.value;
-
-    if (this.formularioRegistro.invalid){
-      const alerta = await this.alertCtrl.create({
-        header: "Datos incompletos",
-        message: "Tienes que llenar todos los datos",
-        buttons: ['Aceptar']
-      });
-
-      // await this.alerta.present();
-      return;
-    }
-
-    var usuario = {
-      rut:formulario.rut,
-      password:formulario.password
-    }
-
-    localStorage.setItem('usuario', JSON.stringify(usuario));
-    this.navCtrl.navigateRoot("login");
-  }*/
-
 }
